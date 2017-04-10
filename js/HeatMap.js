@@ -3,6 +3,21 @@ var dataUrl = "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceDa
 d3.json(dataUrl, function(json) {
 	console.log(json);
 	var dataSet = json;
+	var dataSetMonthlyVariance = dataSet.monthlyVariance;
+
+	var varianceData = dataSetMonthlyVariance.map(function(data) {
+		return data.variance;
+	});
+
+	console.log(varianceData);
+
+	var baseTemperature = dataSet.baseTemperature;
+	var minTempVariance = d3.min(varianceData);
+	var maxTempVariance = d3.max(varianceData);
+
+	console.log(baseTemperature);
+	console.log(minTempVariance);
+	console.log(maxTempVariance);
 
 	var height = 600;
 	var width = 600;
