@@ -35,4 +35,31 @@ d3.json(dataUrl, function(json) {
 		.domain([baseTemperature + minTempVariance, baseTemperature + maxTempVariance])
 		.range(colors);
 
+	// X Axis
+	var xScale = d3.scaleLinear()
+		.domain([1750, 2015])
+		.range([0, 400]);
+
+	var xAxis = d3.axisBottom()
+		.scale(xScale)
+		.ticks(10);
+
+	svg.append("g")
+		.attr("transform", "translate(75," + 450 + ")")
+		.call(xAxis);
+
+
+	// Y Axis
+	var yScale = d3.scaleLinear()
+		.domain([1, 12])
+		.range([0, 400]);
+
+	var yAxis = d3.axisLeft()
+		.scale(yScale)
+		.ticks(10);
+
+	svg.append("g")
+		.attr("transform", "translate(75," + 50 + ")")
+		.call(yAxis);
+
 });
