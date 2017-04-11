@@ -22,10 +22,17 @@ d3.json(dataUrl, function(json) {
 	var height = 600;
 	var width = 600;
 
+	var colors = ["blue", "lightblue", "green", "lightgreen", "yellow", "lightorange", "orange", "lightred", "red"];
+
 	d3.select(".heatmap-title").text("Heat Map of Global Temperatures");
 
 	var svg = d3.select(".heatmap")
 		.attr("width", width)
 		.attr("height", height)
 		.attr("viewBox", "0 0 550 550");
+
+	var colorScale = d3.scaleQuantize()
+		.domain([baseTemperature + minTempVariance, baseTemperature + maxTempVariance])
+		.range(colors);
+
 });
