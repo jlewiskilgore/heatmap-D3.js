@@ -9,7 +9,12 @@ d3.json(dataUrl, function(json) {
 		return data.variance;
 	});
 
+	var yearData = dataSetMonthlyVariance.map(function(data) {
+		return data.year;
+	})
+
 	console.log(varianceData);
+	console.log(yearData);
 
 	var baseTemperature = dataSet.baseTemperature;
 	var minTempVariance = d3.min(varianceData);
@@ -34,6 +39,10 @@ d3.json(dataUrl, function(json) {
 	var colorScale = d3.scaleQuantize()
 		.domain([baseTemperature + minTempVariance, baseTemperature + maxTempVariance])
 		.range(colors);
+
+	for(var i = 0; i < varianceData.length; i++) {
+		console.log(yearData[i] + " " + colorScale(varianceData[i]+baseTemperature));
+	}
 
 	// X Axis
 	var xScale = d3.scaleLinear()
