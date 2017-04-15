@@ -25,7 +25,7 @@ d3.json(dataUrl, function(json) {
 	console.log(maxTempVariance);
 
 	var height = 600;
-	var width = 1400;
+	var width = 1300;
 
 	var colors = ["blue", "lightblue", "green", "lightgreen", "yellow", "gold", "orange", "lightred", "red"];
 
@@ -34,7 +34,7 @@ d3.json(dataUrl, function(json) {
 	var svg = d3.select(".heatmap")
 		.attr("width", width)
 		.attr("height", height)
-		.attr("viewBox", "200 0 750 550");
+		.attr("viewBox", "200 0 800 600");
 
 	var colorScale = d3.scaleQuantize()
 		.domain([baseTemperature + minTempVariance, baseTemperature + maxTempVariance])
@@ -52,10 +52,10 @@ d3.json(dataUrl, function(json) {
 			return ((d.year) - 1675 + (i/4));
 		})
 		.attr("y", function(d, i) {
-			return ((d.month) * 40);
+			return ((d.month) * 38 + 15);
 		})
 		.attr("width", 5)
-		.attr("height", 20)
+		.attr("height", 30)
 		.style("fill", function(d) {
 			return colorScale(d.variance + baseTemperature);
 		});
@@ -68,7 +68,8 @@ d3.json(dataUrl, function(json) {
 
 	var xAxis = d3.axisBottom()
 		.scale(xScale)
-		.ticks(15);
+		.ticks(25)
+		.tickFormat(d3.format('0000'));
 
 	svg.append("g")
 		.attr("transform", "translate(75," + 500 + ")")
@@ -78,14 +79,14 @@ d3.json(dataUrl, function(json) {
 	// Y Axis
 	var yScale = d3.scaleLinear()
 		.domain([1, 12])
-		.range([0, 475]);
+		.range([0, 450]);
 
 	var yAxis = d3.axisLeft()
 		.scale(yScale)
 		.ticks(10);
 
 	svg.append("g")
-		.attr("transform", "translate(75," + 25 + ")")
+		.attr("transform", "translate(75," + 50 + ")")
 		.call(yAxis);
 
 });
