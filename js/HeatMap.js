@@ -75,6 +75,11 @@ d3.json(dataUrl, function(json) {
 		.attr("transform", "translate(75," + 500 + ")")
 		.call(xAxis);
 
+	svg.append("text")
+		.style("text-anchor", "middle")
+		.attr("transform", "translate(600," + 550 +")")
+		.text("Year");
+
 
 	// Y Axis
 	var yScale = d3.scaleLinear()
@@ -83,10 +88,15 @@ d3.json(dataUrl, function(json) {
 
 	var yAxis = d3.axisLeft()
 		.scale(yScale)
-		.ticks(10);
+		.ticks(0);
 
 	svg.append("g")
 		.attr("transform", "translate(75," + 50 + ")")
 		.call(yAxis);
+
+	svg.append("text")
+		.style("text-anchor", "end")
+		.attr("transform", "translate(-25, 250)rotate(-90)")
+		.text("Month");
 
 });
