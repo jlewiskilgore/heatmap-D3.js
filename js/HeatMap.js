@@ -31,6 +31,8 @@ d3.json(dataUrl, function(json) {
 
 	d3.select(".heatmap-title").text("Heat Map of Global Temperatures");
 
+	d3.select(".heatmap-description").text("Data from Years 1753 to 2015 (Base Temperature of 8.66 degrees Celsius)");
+
 	var svg = d3.select(".heatmap")
 		.attr("width", width)
 		.attr("height", height)

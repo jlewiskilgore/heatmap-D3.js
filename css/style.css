@@ -8,6 +8,11 @@ body {
 	margin-bottom: 25px;
 }
 
+.heatmap-description {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
 .heatmap {
 	background-color: white;
 	display: block;
