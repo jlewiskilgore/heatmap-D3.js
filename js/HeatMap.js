@@ -96,7 +96,19 @@ d3.json(dataUrl, function(json) {
 
 	svg.append("text")
 		.style("text-anchor", "end")
-		.attr("transform", "translate(-25, 250)rotate(-90)")
+		.attr("transform", "translate(0, 250)rotate(-90)")
 		.text("Month");
+
+	// Month Labels
+	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+	for(var i=0; i<months.length; i++) {
+		svg.append("text")
+			.attr("x", 40)
+			.attr("y", 75 + (i * 38))
+			.attr("text-anchor", "left")
+			.text(months[i]);
+	}
 
 });
