@@ -59,6 +59,7 @@ d3.json(dataUrl, function(json) {
 				.duration(200)
 				.style("opacity", 1);
 			div.html("Date: " + months[d.month - 1] + " " + d.year + "<br/>"
+				+ "Temperature: " + (baseTemperature + d.variance).toPrecision(2) + "<br/>"
 				+ "Monthly Variance: " + d.variance)
 			.style("left", (d3.event.pageX) + "px")
 			.style("top", (d3.event.pageY) + "px");
