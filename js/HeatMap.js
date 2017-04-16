@@ -29,7 +29,11 @@ d3.json(dataUrl, function(json) {
 
 	var colors = ["blue", "lightblue", "green", "lightgreen", "yellow", "gold", "orange", "lightred", "red"];
 
-	d3.select(".heatmap-title").text("Heat Map of Global Temperatures");
+	var div = d3.select(".heatmap-title").text("Heat Map of Global Temperatures")
+		.append("div")
+			.attr("class", "tooltip")
+			.style("opacity", 0);
+
 
 	d3.select(".heatmap-description").text("Data from Years 1753 to 2015 (Base Temperature of 8.66 degrees Celsius)");
 
@@ -41,10 +45,6 @@ d3.json(dataUrl, function(json) {
 	var colorScale = d3.scaleQuantize()
 		.domain([baseTemperature + minTempVariance, baseTemperature + maxTempVariance])
 		.range(colors);
-
-	for(var i = 0; i < varianceData.length; i++) {
-		console.log(yearData[i] + " " + colorScale(varianceData[i] + baseTemperature));
-	}
 
 	var rects = svg.selectAll("rect")
 		.data(dataSetMonthlyVariance)
@@ -60,6 +60,20 @@ d3.json(dataUrl, function(json) {
 		.attr("height", 30)
 		.style("fill", function(d) {
 			return colorScale(d.variance + baseTemperature);
+		})
+		.on("mouseover", function(d) {
+			div.transition()
+				.duration(200)
+				.style("opacity", 1);
+			div.html("Date: " + months[d.month - 1] + " " + d.year + "<br/>"
+				+ "Monthly Variance: " + d.variance)
+			.style("left", (d3.event.pageX) + "px")
+			.style("top", (d3.event.pageY) + "px");
+		})
+		.on("mouseout", function(d) {
+			div.transition()
+				.duration(200)
+				.style("opacity", 0);
 		});
 
 
