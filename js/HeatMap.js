@@ -27,7 +27,7 @@ d3.json(dataUrl, function(json) {
 	var height = 600;
 	var width = 1300;
 
-	var colors = ["blue", "lightblue", "green", "lightgreen", "yellow", "gold", "orange", "lightred", "red"];
+	var colors = ["blue", "lightblue", "green", "lightgreen", "yellow", "gold", "orange", "tomato", "red"];
 
 	var div = d3.select(".heatmap-title").text("Heat Map of Global Temperatures")
 		.append("div")
