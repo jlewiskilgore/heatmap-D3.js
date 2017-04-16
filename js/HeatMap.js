@@ -13,16 +13,9 @@ d3.json(dataUrl, function(json) {
 		return data.year;
 	})
 
-	console.log(varianceData);
-	console.log(yearData);
-
 	var baseTemperature = dataSet.baseTemperature;
 	var minTempVariance = d3.min(varianceData);
 	var maxTempVariance = d3.max(varianceData);
-
-	console.log(baseTemperature);
-	console.log(minTempVariance);
-	console.log(maxTempVariance);
 
 	var height = 600;
 	var width = 1300;
@@ -126,5 +119,20 @@ d3.json(dataUrl, function(json) {
 			.attr("text-anchor", "left")
 			.text(months[i]);
 	}
+
+	// Color Key
+	for(var i = 0; i<colors.length; i++) {
+		svg.append("rect")
+			.attr("height", 10)
+			.attr("width", 20)
+			.attr("x", 100 + (20*i))
+			.attr("y", 540)
+			.style("fill", colors[i]);
+	}
+
+	svg.append("text")
+		.attr("x", 50)
+		.attr("y", 575)
+		.text("Variance Difference from Base Temperature");
 
 });
